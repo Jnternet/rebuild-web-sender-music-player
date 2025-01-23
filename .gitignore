@@ -1,1 +1,6 @@
 /target
+/client_conf.toml
+/.idea/modules.xml
+/.idea/rebuild-web-server-music-player.iml
+/test.wav
+/.idea/vcs.xml
