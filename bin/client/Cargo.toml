@@ -1,0 +1,13 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+utils = { path = "../../lib/utils" }
+conf = { path = "../../lib/conf" }
+serde = { version = "1.0.214", features = ["derive"] }
+anyhow = "1.0.95"
+read-conf = { path = "../../ctrl/client/read-conf" }
+client-play = { path = "../../ctrl/client/client-play" }
+show-conf = { path = "../../io/client/show-conf" }

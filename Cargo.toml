@@ -1,0 +1,3 @@
+[workspace]
+resolver = "2"
+members = ["bin/client", "bin/server", "ctrl/client/client-play", "ctrl/client/read-conf", "ctrl/server/handle-conf", "ctrl/server/prepare-send", "ctrl/server/read-file", "io/client/show-conf", "io/server/show-server-close", "io/server/show-server-conf", "io/server/show-server-prepare-send", "io/server/show-server-read-file", "io/server/show-server-work", "lib/conf", "lib/play", "lib/send", "lib/utils"]

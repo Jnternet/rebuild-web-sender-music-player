@@ -1,0 +1,8 @@
+[package]
+name = "show-conf"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+conf = { path = "../../../lib/conf" }
+read-conf = { path = "../../../ctrl/client/read-conf" }
