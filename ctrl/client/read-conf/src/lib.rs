@@ -13,7 +13,7 @@ impl ClientConf {
         &self.ip
     }
 }
-impl conf::Conf for ClientConf {}
+impl Conf for ClientConf {}
 
 pub fn read_conf<P: AsRef<Path>>(path: P) -> ClientConf {
     ClientConf::read_from_path(path).unwrap_or_else(|_e| {
