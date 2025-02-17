@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+mini_threadpool = "0.1.0"
+utils = { path = "../../lib/utils" }
+conf = { path = "../../lib/conf" }
+serde = "1.0.217"
