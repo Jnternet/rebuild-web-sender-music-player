@@ -5,6 +5,7 @@ use std::net::TcpStream;
 use std::path::Path;
 
 pub struct WebMusic {
+    size: usize,
     decoder: Decoder<Cursor<Vec<u8>>>,
 }
 impl WebMusic {
@@ -12,6 +13,7 @@ impl WebMusic {
         let mut buf = Vec::new();
         tcp.read_to_end(&mut buf)?;
         anyhow::Ok(Self {
+            size: buf.len(),
             decoder: Decoder::new(Cursor::new(buf))?,
         })
     }
@@ -20,6 +22,7 @@ impl WebMusic {
         let mut file = std::fs::File::open(path)?;
         file.read_to_end(&mut buf)?;
         anyhow::Ok(Self {
+            size: buf.len(),
             decoder: Decoder::new(Cursor::new(buf))?,
         })
     }
@@ -28,6 +31,9 @@ impl WebMusic {
     }
     pub fn try_default_outstream() -> anyhow::Result<(OutputStream, OutputStreamHandle)> {
         anyhow::Ok(OutputStream::try_default()?)
+    }
+    pub fn size(&self) -> usize {
+        self.size
     }
 }
 

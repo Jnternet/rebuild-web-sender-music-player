@@ -3,6 +3,8 @@ use std::net::TcpStream;
 use std::sync::Arc;
 
 fn main() {
+    //日志记录开始
+    let _guard = utils::log::init_log("log/", "server-log");
     //read conf
     let conf = server::read_conf_with_message(server::DEFAULT_PATH);
     //读取文件
@@ -24,7 +26,8 @@ fn main() {
     tcp.incoming()
         .filter_map(|r| if let Ok(ts) = r { Some(ts) } else { None })
         .for_each(|s| {
-            println!("请求来自:{}", s.peer_addr().unwrap());
+            // println!("请求来自:{}", s.peer_addr().unwrap());
+            utils::log::tracing::info!("请求来自:{}", s.peer_addr().unwrap());
             let carcv = arcv.clone();
             tp.execute(|| handle_connection(carcv, s)).unwrap()
         });
@@ -36,4 +39,6 @@ fn main() {
 fn handle_connection(arcv: Arc<Vec<u8>>, mut s: TcpStream) {
     s.write_all(&arcv).unwrap();
     s.flush().unwrap();
+    utils::log::tracing::info!("向{}发送了{}字节", s.peer_addr().unwrap(), arcv.len());
+    utils::log::tracing::info!("发送完成，断开和{:?}的连接", s.peer_addr().unwrap());
 }
